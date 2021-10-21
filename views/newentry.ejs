@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%-include("./partialviews/header.ejs")%>
+  <body>
+    <%-include("./partialviews/navigation.ejs")%>
+    <div class="form-container">
+    <h3>Create a new blog</h3>
+    <div class="blog-form">
+        <form action="/" method="POST">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" required />
+          <label for="author">Author:</label>
+          <input type="text" id="author" name="author" required />
+          <label for="url">Recipe URL:</label>
+          <input type="text" id="url" name="url" placeholder="ex: smittenkitchen.com" required />
+          <label for="prepared">I made this recipe:</label>
+
+        <select name="prepared" id="prepared">  
+        <option value="exact">Exactly as written</option>
+        <option value="modified">With some modifications</option>
+        </select>
+        <label for="modifications" class="modifications">Modifications:</label>
+          <textarea id="modifications" name="modifications" rows="3" required class="modifications"></textarea>
+          <label for="file-upload" class="custom-file-upload">
+            Upload Image
+       </label>
+       <input id="file-upload" type="file"/>
+          <label for="body">Blog body:</label>
+          <textarea id="body" name="body" rows="10" required></textarea>
+          <button>Submit</button>
+        </form>
+    </div>
+  </body>
+  <script>
+      const preparationMethod = document.getElementById("prepared");
+      const modifications = document.querySelectorAll(".modifications");
+      preparationMethod.addEventListener("change", (e)=>{
+          console.log(modifications)
+        if(e.target.value === "modified"){
+            modifications.forEach(m=> m.style.display="block")
+        } else {
+            modifications.forEach(m=> m.style.display="none")
+        }
+      })
+  </script>
+</html>

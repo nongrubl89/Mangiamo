@@ -1,0 +1,23 @@
+<div class="logo">
+  <img class="pasta" src="/images/pastanavy.png" />
+  <h3 class="name">Mangiamo</h3>
+  <button class="show-nav">Menu</button>
+</div>
+<div class="side-nav">
+  <a href="/"><h3>Home</h3></a>
+  <a href="/new-entry"><h3>New Post</h3></a>
+  <a href="#"><h3>Logout</h3></a>
+</div>
+
+<script>
+  const showNavButton = document.querySelector(".show-nav");
+  const sideNav = document.querySelector(".side-nav");
+  showNavButton.addEventListener("click", () => {
+    sideNav.className === "side-nav"
+      ? (sideNav.className = "side-nav-show")
+      : (sideNav.className = "side-nav");
+  });
+  window.addEventListener("click", (e) => {
+    console.log(e);
+  });
+</script>

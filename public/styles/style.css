@@ -1,0 +1,167 @@
+* {
+  font-family: "Noto Sans Mono", monospace, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  background-color: #eeded3;
+  color: #091249;
+}
+.container,
+.form-container {
+  padding: 5em;
+  z-index: -1;
+}
+
+hr {
+  padding: 0;
+  border-top: 4px solid #091249;
+}
+
+/* Header Styles */
+.logo {
+  display: grid;
+  grid-template-areas:
+    ". . icon"
+    "a b c"
+    ". d .";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  align-content: center;
+  padding-top: 1em;
+}
+
+.logo > h3 {
+  grid-area: d;
+  display: grid;
+  justify-content: center;
+}
+
+.pasta {
+  margin-left: auto;
+  margin-right: auto;
+  grid-area: b;
+}
+.name {
+  text-align: center;
+  margin: 0;
+  padding-top: 1em;
+}
+
+/* Side Navigation Styles */
+.show-nav {
+  cursor: pointer;
+  grid-area: icon;
+  border: none;
+  display: grid;
+  justify-content: right;
+  padding-right: 6em;
+}
+
+.side-nav {
+  display: none;
+}
+.side-nav-show {
+  background-color: #091249;
+}
+.side-nav-show a h3 {
+  color: #eeded3;
+  background-color: #091249;
+}
+
+.side-nav-show a {
+  background-color: #091249;
+  padding-left: 1em;
+}
+
+.side-nav-show {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #091249;
+  height: 100vh;
+  width: 33%;
+  z-index: 1000;
+  display: grid;
+  grid-auto-rows: 75px;
+  justify-content: space-between;
+}
+
+/* Form Styles */
+.form-container {
+  display: grid;
+  justify-content: normal;
+}
+
+form {
+  display: grid;
+  padding: 1em;
+  margin: 2rem auto 0 auto;
+  max-width: 600px;
+  padding: 1em;
+}
+form button {
+  background: lightgrey;
+  padding: 0.7em;
+  width: 100%;
+  border: 0;
+  margin-top: 1em;
+}
+
+label {
+  padding: 0.5em 0.5em 0.5em 0;
+}
+
+input,
+textarea {
+  padding: 0.7em;
+  margin-bottom: 0.5rem;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 1px solid #091249;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+form button {
+  background: #091249;
+  color: #eeded3;
+  border-radius: 25px;
+}
+
+.form-container > h3 {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid #091249;
+  background: #091249;
+  color: #eeded3;
+  border-radius: 25px;
+  text-align: center;
+  width: 30%;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-top: 0.7em;
+  margin-bottom: 0.7em;
+}
+
+.img-div {
+  height: 250px;
+  width: 250px;
+  clip-path: circle();
+  background: #091249;
+}
+
+.modifications {
+  display: none;
+}
