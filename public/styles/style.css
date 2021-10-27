@@ -8,7 +8,26 @@
 .container,
 .form-container {
   padding: 5em;
-  z-index: -1;
+  z-index: 1;
+}
+
+.entries-container {
+  display: grid;
+  grid-template-areas:
+    ". titleimg ."
+    ". author ."
+    ". link .";
+  grid-template-columns: 20% 60% 20%;
+  grid-template-rows: 200px 50px;
+  padding: 3em;
+  justify-items: center;
+}
+
+.entries {
+  display: grid;
+  grid-template-rows: auto;
+  grid-column: 2;
+  justify-content: center;
 }
 
 hr {
@@ -72,6 +91,14 @@ hr {
   padding-left: 1em;
 }
 
+.close-side-nav {
+  background: #091249;
+  color: #eeded3;
+  border: none;
+  margin-right: 2em;
+  cursor: pointer;
+}
+
 .side-nav-show {
   position: fixed;
   right: 0;
@@ -82,7 +109,9 @@ hr {
   width: 33%;
   z-index: 1000;
   display: grid;
-  grid-auto-rows: 75px;
+  grid-template-columns: 90% 10%;
+  grid-template-rows: 75px 75px 75px;
+  grid-auto-flow: column;
   justify-content: space-between;
 }
 
@@ -138,9 +167,9 @@ form button {
   text-align: center;
 }
 
-input[type="file"] {
+/* input[type="file"] {
   display: none;
-}
+} */
 .custom-file-upload {
   border: 1px solid #091249;
   background: #091249;
@@ -156,12 +185,53 @@ input[type="file"] {
 }
 
 .img-div {
-  height: 250px;
-  width: 250px;
+  height: 175px;
+  width: 175px;
   clip-path: circle();
   background: #091249;
+  display: grid;
+  grid-area: titleimg;
+  z-index: 4;
+}
+
+.entry-title {
+  display: grid;
+  grid-area: titleimg;
+  z-index: 5;
+  height: max-content;
+  width: min-content;
+  padding: 0.5em;
+  margin-left: 9em;
+  border-radius: 5px;
+  transform: rotate(9deg);
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+.entry-title > h3,
+.entry-title {
+  background: #091249;
+  color: #eeded3;
+}
+
+.author {
+  grid-area: author;
+}
+
+.link-to-recipe {
+  grid-area: link;
 }
 
 .modifications {
   display: none;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .side-nav-show {
+    width: 100%;
+  }
 }

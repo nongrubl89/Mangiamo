@@ -6,7 +6,7 @@
     <div class="form-container">
     <h3>Create a new blog</h3>
     <div class="blog-form">
-        <form action="/" method="POST">
+        <form action="/" method="POST" enctype="multipart/form-data">
           <label for="title">Title:</label>
           <input type="text" id="title" name="title" required />
           <label for="author">Author:</label>
@@ -20,11 +20,13 @@
         <option value="modified">With some modifications</option>
         </select>
         <label for="modifications" class="modifications">Modifications:</label>
-          <textarea id="modifications" name="modifications" rows="3" required class="modifications"></textarea>
-          <label for="file-upload" class="custom-file-upload">
+          <textarea id="modifications" name="modifications" rows="3" class="modifications"></textarea>
+          <!-- <label for="file-upload" class="custom-file-upload">
             Upload Image
        </label>
-       <input id="file-upload" type="file"/>
+       <input id="file-upload" type="file" accept="jpg/png"/> -->
+       <input type="file" id="image" name="image" accept="image/png, image/jpeg">
+       <!-- <input type="submit"> -->
           <label for="body">Blog body:</label>
           <textarea id="body" name="body" rows="10" required></textarea>
           <button>Submit</button>

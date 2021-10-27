@@ -7,17 +7,19 @@
   <a href="/"><h3>Home</h3></a>
   <a href="/new-entry"><h3>New Post</h3></a>
   <a href="#"><h3>Logout</h3></a>
+  <button class="close-side-nav">x</button>
 </div>
 
 <script>
   const showNavButton = document.querySelector(".show-nav");
   const sideNav = document.querySelector(".side-nav");
+  const closeNav = document.querySelector(".close-side-nav");
   showNavButton.addEventListener("click", () => {
     sideNav.className === "side-nav"
       ? (sideNav.className = "side-nav-show")
       : (sideNav.className = "side-nav");
   });
-  window.addEventListener("click", (e) => {
-    console.log(e);
+  closeNav.addEventListener("click", () => {
+    sideNav.className = "side-nav";
   });
 </script>
