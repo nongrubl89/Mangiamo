@@ -13,21 +13,14 @@
 
 .entries-container {
   display: grid;
-  grid-template-areas:
-    ". titleimg ."
+  /* grid-template-areas: */
+  /* ". titleimg ."
     ". author ."
-    ". link .";
-  grid-template-columns: 20% 60% 20%;
+    ". link ."; */
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 200px 50px;
   padding: 3em;
   justify-items: center;
-}
-
-.entries {
-  display: grid;
-  grid-template-rows: auto;
-  grid-column: 2;
-  justify-content: center;
 }
 
 hr {
@@ -184,21 +177,30 @@ form button {
   margin-bottom: 0.7em;
 }
 
+.single-entry {
+  display: grid;
+  grid-template-rows: 200px 75px;
+  grid-template-areas:
+    "imgtitle"
+    "author";
+  justify-items: center;
+}
+
 .img-div {
   height: 175px;
   width: 175px;
   clip-path: circle();
   background: #091249;
   display: grid;
-  grid-area: titleimg;
   z-index: 4;
+  grid-area: imgtitle;
 }
 
 .entry-title {
   display: grid;
-  grid-area: titleimg;
   z-index: 5;
-  height: max-content;
+  /* height: max-content; */
+  grid-area: imgtitle;
   width: min-content;
   padding: 0.5em;
   margin-left: 9em;
@@ -215,10 +217,6 @@ form button {
 
 .author {
   grid-area: author;
-}
-
-.link-to-recipe {
-  grid-area: link;
 }
 
 .modifications {

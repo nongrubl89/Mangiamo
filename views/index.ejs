@@ -3,18 +3,23 @@
   <%-include("./partialviews/header.ejs")%>
   <body>
     <%-include("./partialviews/navigation.ejs")%> <% if (reviews.length > 0) {
-    %> <% reviews.forEach(review => { %>
+    %>
     <div class="entries-container">
-      <a class="entry-title" href="/reviews/<%=review._id%>">
-        <h3><%=review.title %></h3>
-      </a>
-      <img class="img-div" src="/images/<%=review.image[0].filename%>" />
-      <h5 class="author">By: <%=review.author%></h5>
-      <a href="<%=review.url%>" target="_blank"> </a>
+      <% reviews.forEach(review => { %>
+      <div class="single-entry">
+        <!-- <div class="image-title"> -->
+        <a class="entry-title" href="/reviews/<%=review._id%>">
+          <h3><%=review.title %></h3>
+        </a>
+        <img class="img-div" src="/images/<%=review.image[0].filename%>" />
+        <!-- </div> -->
+        <h5 class="author">By: <%=review.author%></h5>
+        <a href="<%=review.url%>" target="_blank"> </a>
+      </div>
+      <% }) %> <% } else { %>
+      <p>Nothing to see here...</p>
+      <% } %>
     </div>
-    <% }) %> <% } else { %>
-    <p>Nothing to see here...</p>
-    <% } %>
   </body>
   <script>
     //     const link = document.getElementById("link");
