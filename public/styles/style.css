@@ -4,8 +4,9 @@
     sans-serif;
   background-color: #eeded3;
   color: #091249;
+  font-weight: 300;
 }
-.container,
+
 .form-container {
   padding: 5em;
   z-index: 1;
@@ -13,12 +14,9 @@
 
 .entries-container {
   display: grid;
-  /* grid-template-areas: */
-  /* ". titleimg ."
-    ". author ."
-    ". link ."; */
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 200px 50px;
+  /* grid-template-rows: 200px 50px; */
+  padding-top: 4em;
   padding: 3em;
   justify-items: center;
 }
@@ -39,18 +37,27 @@ hr {
   grid-template-rows: auto;
   align-content: center;
   padding-top: 1em;
+  height: 20em;
 }
 
-.logo > h3 {
+.logo > h2 {
   grid-area: d;
   display: grid;
   justify-content: center;
+  font-weight: 600;
+  width: 370px;
+  text-align: center;
+}
+
+.logo > .pasta > img {
+  width: 370px;
 }
 
 .pasta {
   margin-left: auto;
   margin-right: auto;
   grid-area: b;
+  width: 370px;
 }
 .name {
   text-align: center;
@@ -103,7 +110,7 @@ hr {
   z-index: 1000;
   display: grid;
   grid-template-columns: 90% 10%;
-  grid-template-rows: 75px 75px 75px;
+  grid-template-rows: 75px 75px 75px 75px;
   grid-auto-flow: column;
   justify-content: space-between;
 }
@@ -112,6 +119,7 @@ hr {
 .form-container {
   display: grid;
   justify-content: normal;
+  /* width: 75%; */
 }
 
 form {
@@ -160,9 +168,6 @@ form button {
   text-align: center;
 }
 
-/* input[type="file"] {
-  display: none;
-} */
 .custom-file-upload {
   border: 1px solid #091249;
   background: #091249;
@@ -196,17 +201,36 @@ form button {
   grid-area: imgtitle;
 }
 
+.review-img {
+  height: 275px;
+  width: 275px;
+  clip-path: circle();
+  background: #091249;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
 .entry-title {
   display: grid;
   z-index: 5;
-  /* height: max-content; */
   grid-area: imgtitle;
-  width: min-content;
+  width: 6.5rem;
+  text-align: center;
   padding: 0.5em;
   margin-left: 9em;
   border-radius: 5px;
   transform: rotate(9deg);
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  line-height: 25px;
+  transition: width 0.2s ease-in-out;
+}
+
+.entry-title:hover {
+  width: 7rem;
+  transition: width 0.1s ease-in-out;
 }
 
 .entry-title > h3,
@@ -231,5 +255,8 @@ a:hover {
 @media only screen and (max-width: 600px) {
   .side-nav-show {
     width: 100%;
+  }
+  .entries-container {
+    grid-template-columns: 1fr;
   }
 }

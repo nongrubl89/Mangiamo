@@ -39,6 +39,24 @@ app.get("/new-entry", (req, res) => {
   res.render("newentry", { title: "Mangiamo || New Entry" });
 });
 
+app.get("/about", (req, res) => {
+  res.render("about", { title: "Mangiamo || About" });
+});
+
+app.get("/reviews/:id", (req, res) => {
+  const id = req.params.id;
+  Review.findById(id)
+    .then((result) => {
+      res.render("reviewdetails", {
+        review: result,
+        title: "Mangiamo || title",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 app.post("/", multerSettings.upload.single("image"), async (req, res, next) => {
   const { filename: image } = req.file;
   await sharp(req.file.path)
