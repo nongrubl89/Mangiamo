@@ -49,7 +49,7 @@ app.get("/reviews/:id", (req, res) => {
     .then((result) => {
       res.render("reviewdetails", {
         review: result,
-        title: "Mangiamo || title",
+        title: `Mangiamo || ${result.title}`,
       });
     })
     .catch((err) => {
@@ -77,6 +77,39 @@ app.post("/", multerSettings.upload.single("image"), async (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
+});
+
+app.put("/:id", (req, res) => {
+  const id = req.params.id;
+  Review.findOneAndUpdate(
+    { id: req.body.id },
+    { $set: req.body },
+    { new: true }
+  )
+    .then((result) => {
+      res.redirect(`/`);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  Review.findByIdAndDelete(id)
+    .then((result) => {
+      res.json({ redirect: "/" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get("/edit/:id", (req, res) => {
+  const id = req.params.id;
+  Review.findById(id).then((result) => {
+    res.render("editentry", { title: "Edit Entry", review: result });
+  });
 });
 
 app.use((req, res) => {

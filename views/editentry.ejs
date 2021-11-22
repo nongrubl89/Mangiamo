@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%-include("./partialviews/header.ejs")%>
+  <body>
+    <%-include("./partialviews/navigation.ejs")%>
+    <div class="form-container">
+    <h3>Edit <%=review.title%></h3>
+    <div class="blog-form">
+        <form action="/<%=review._id%>" method="put" enctype="multipart/form-data">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" value="<%=review.title%>"required></input>
+          <label for="author">Author:</label>
+          <input type="text" id="author" name="author" value="<%=review.author%>" required />
+          <label for="url">Recipe URL:</label>
+          <input type="text" id="url" name="url" value="<%=review.url%>" placeholder="ex: smittenkitchen.com" required />
+          <label for="prepared">I made this recipe:</label>
+
+        <select name="prepared" id="prepared">  
+        <option value="exact">Exactly as written</option>
+        <option value="modified">With some modifications</option>
+        </select>
+        <% if(review.prepared == 'modified') { %>
+            <label for="modifications" >Modifications:</label>
+          <textarea id="modifications" name="modifications" rows="3"><%=review.modifications%></textarea>
+       <% } else { %>
+            <div></div>
+       <% } %>
+       <input type="file" id="image" name="image" accept="image/png, image/jpeg">
+          <label for="body">Blog body:</label>
+          <textarea id="body" name="body" rows="10" required><%=review.body%></textarea>
+          <button>Submit</button>
+        </form>
+    </div>
+  </body>
+  <script>
+      const preparationMethod = document.getElementById("prepared");
+      const modifications = document.querySelectorAll(".modifications");
+      preparationMethod.addEventListener("change", (e)=>{
+          console.log(modifications)
+        if(e.target.value === "modified"){
+            modifications.forEach(m=> m.style.display="block")
+        } else {
+            modifications.forEach(m=> m.style.display="none")
+        }
+      })
+  </script>
+</html>

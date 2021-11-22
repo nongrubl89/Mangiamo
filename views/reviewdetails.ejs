@@ -3,11 +3,47 @@
   <%-include("./partialviews/header.ejs")%>
   <body>
     <%-include("./partialviews/navigation.ejs")%>
-    <div class="form-container">
+    <div class="review-container">
       <h3><%=review.title %></h3>
       <a href="<%=review.url%>" target="_blank">Link to original recipe</a>
       <img class="review-img" src="/images/<%=review.image[0].filename%>" />
       <p><%=review.body %></p>
+      <% if(review.prepared === "modified"){ %>
+      <h3>Modifications:</h3>
+      <p><%=review.modifications%></p>
+      <% } else{ %>
+      <div></div>
+      <% } %>
+      <button data-num="<%=review.id%>" class="edit-review">
+        <a href="/edit/<%=review.id%>">Edit</a>
+      </button>
+      <button data-num="<%=review.id%>" class="delete-review">
+        Delete Entry
+      </button>
     </div>
   </body>
+  <script>
+    const editButton = document.querySelector(".edit-review");
+    const deleteButton = document.querySelector(".delete-review");
+
+    editButton.addEventListener("click", (e) => {
+      const endpoint = `/edit/${e.target.dataset.num}`;
+      fetch(endpoint, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .then((data) => (window.location.href = data.redirect))
+        .catch((err) => console.log(err));
+    });
+
+    deleteButton.addEventListener("click", (e) => {
+      const endpoint = `/delete/${e.target.dataset.num}`;
+      fetch(endpoint, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .then((data) => (window.location.href = data.redirect))
+        .catch((err) => console.log(err));
+    });
+  </script>
 </html>

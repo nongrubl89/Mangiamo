@@ -43,14 +43,20 @@ hr {
 .logo > h2 {
   grid-area: d;
   display: grid;
-  justify-content: center;
+  justify-self: center;
   font-weight: 600;
   width: 370px;
   text-align: center;
 }
 
+.form-container > h3,
+.review-container > h3 {
+  font-weight: 600;
+}
+
 .logo > .pasta > img {
-  width: 370px;
+  width: 90%;
+  text-align: center;
 }
 
 .pasta {
@@ -122,6 +128,12 @@ hr {
   /* width: 75%; */
 }
 
+.review-container {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
+
 form {
   display: grid;
   padding: 1em;
@@ -160,6 +172,18 @@ form button {
   background: #091249;
   color: #eeded3;
   border-radius: 25px;
+}
+
+.review-container > button {
+  background: #091249;
+  color: #eeded3;
+  border-radius: 25px;
+  justify-self: center;
+  border: 0;
+  width: 200px;
+  padding: 0.75em;
+  margin: 10px;
+  cursor: pointer;
 }
 
 .form-container > h3 {
@@ -225,12 +249,10 @@ form button {
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
   align-items: center;
   line-height: 25px;
-  transition: width 0.2s ease-in-out;
 }
 
 .entry-title:hover {
   width: 7rem;
-  transition: width 0.1s ease-in-out;
 }
 
 .entry-title > h3,
