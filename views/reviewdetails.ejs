@@ -14,10 +14,10 @@
       <% } else{ %>
       <div></div>
       <% } %>
-      <button data-num="<%=review.id%>" class="edit-review">
-        <a href="/edit/<%=review.id%>">Edit</a>
+      <button data-num="<%=review._id%>" class="edit-review">
+        <a href="/edit/<%=review._id%>">Edit</a>
       </button>
-      <button data-num="<%=review.id%>" class="delete-review">
+      <button data-num="<%=review._id%>" class="delete-review">
         Delete Entry
       </button>
     </div>
@@ -25,16 +25,6 @@
   <script>
     const editButton = document.querySelector(".edit-review");
     const deleteButton = document.querySelector(".delete-review");
-
-    editButton.addEventListener("click", (e) => {
-      const endpoint = `/edit/${e.target.dataset.num}`;
-      fetch(endpoint, {
-        method: "DELETE",
-      })
-        .then((response) => response.json())
-        .then((data) => (window.location.href = data.redirect))
-        .catch((err) => console.log(err));
-    });
 
     deleteButton.addEventListener("click", (e) => {
       const endpoint = `/delete/${e.target.dataset.num}`;
