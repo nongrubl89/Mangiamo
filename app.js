@@ -104,6 +104,11 @@ app.delete("/delete/:id", (req, res) => {
     });
 });
 
+app.put("/:id", (req, res) => {
+  console.log(req.params.id);
+  res.redirect("/");
+});
+
 app.get("/edit/:id", (req, res) => {
   const id = req.params.id;
   Review.findById(id).then((result) => {
@@ -112,25 +117,6 @@ app.get("/edit/:id", (req, res) => {
 });
 
 app.put("/edit/:id", async (req, res) => {
-  // req.body.image = [];
-  // if (req.file) {
-  //   const { filename: image } = req.file;
-  //   await sharp(req.file.path)
-  //     .resize(200, 200)
-  //     .jpeg({ quality: 90 })
-  //     .toFile(path.resolve(req.file.destination, "resized", image))
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  //   req.body.image.push(req.file);
-  // } else if (!req.file) {
-  //   Review.findById(req.params.id).then((result) => {
-  //     req.body.image.push(result.image);
-  //   });
-  // }
-
-  // console.log("image", req.body.image);
-
   Review.findOneAndUpdate({ _id: req.params.id }, { $set: req.body })
     .then((result) => {
       res.redirect("/");
