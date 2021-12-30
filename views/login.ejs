@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%-include("./partialviews/header.ejs")%>
+  <body>
+    <%-include("./partialviews/navigation.ejs")%>
+    <div class="form-container">
+      <form action="/login" method="POST" enctype="multipart/form-data">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <label for="author">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <button>Login</button>
+      </form>
+    </div>
+  </body>
+</html>

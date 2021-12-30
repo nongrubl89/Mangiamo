@@ -1,5 +1,6 @@
 const express = require("express");
 const Review = require("./models/review");
+const User = require("./models/user");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -47,6 +48,16 @@ app.get("/", (req, res) => {
     });
   });
   //   res.render("index", { reviews: result, title: "Mangiamo || Home" });
+});
+
+app.get("/login", (req, res) => {
+  res.render("login", {
+    title: "Mangiamo || Login",
+  });
+});
+
+app.post("/login", (req, res) => {
+  console.log(req.body);
 });
 
 app.get("/new-entry", (req, res) => {

@@ -15,7 +15,6 @@
 .entries-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  /* grid-template-rows: 200px 50px; */
   padding-top: 4em;
   padding: 3em;
   justify-items: center;
@@ -30,14 +29,14 @@ hr {
 .logo {
   display: grid;
   grid-template-areas:
-    ". . icon"
+    ". mobileicon icon"
     "a b c"
     ". d .";
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   align-content: center;
   padding-top: 1em;
-  height: 20em;
+  height: 15em;
 }
 
 .logo > h2 {
@@ -116,7 +115,7 @@ hr {
   z-index: 1000;
   display: grid;
   grid-template-columns: 90% 10%;
-  grid-template-rows: 75px 75px 75px 75px;
+  grid-template-rows: 75px 75px 75px 75px 75px;
   grid-auto-flow: column;
   justify-content: space-between;
 }
@@ -303,5 +302,20 @@ a:hover {
   }
   .entries-container {
     grid-template-columns: 1fr;
+  }
+
+  .show-nav {
+    grid-area: mobileicon;
+    justify-content: center;
+    padding-right: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .side-nav-show {
+    width: 100%;
+  }
+  .entries-container {
+    grid-template-columns: 1fr 1fr;
   }
 }
