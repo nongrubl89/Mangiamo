@@ -8,6 +8,7 @@ const path = require("path");
 const sharp = require("sharp");
 const multerSettings = require("./multer");
 const methodOverride = require("method-override");
+const reviewRoutes = require("./routes/reviewRoutes");
 
 app.use(
   bodyParser.urlencoded({
@@ -40,101 +41,87 @@ app.use(
 
 app.get("/", (req, res) => {
   Review.find().then((result) => {
-    console.log("all reviews:", result);
     res.render("index", {
       reviews: result,
-      title: "Mangiamo || Home",
+      title: "Airplane Food || Home",
     });
   });
-});
-
-app.get("/login", (req, res) => {
-  res.render("login", {
-    title: "Mangiamo || Login",
-  });
-});
-
-app.post("/login", (req, res) => {
-  console.log(req.body);
 });
 
 app.get("/new-entry", (req, res) => {
-  res.render("newentry", { title: "Mangiamo || New Entry" });
+  res.render("newentry", { title: "Airplane Food || New Entry" });
 });
 
 app.get("/about", (req, res) => {
-  res.render("about", { title: "Mangiamo || About" });
+  res.render("about", { title: "Airplane Food || About" });
 });
 
-app.get("/reviews/:id", (req, res) => {
-  const id = req.params.id;
-  Review.findById(id)
-    .then((result) => {
-      res.render("reviewdetails", {
-        review: result,
-        title: `Mangiamo || ${result.title}`,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+app.use("/reviews", reviewRoutes);
 
-app.post("/", multerSettings.upload.single("image"), async (req, res, next) => {
-  const { filename: image } = req.file;
-  await sharp(req.file.path)
-    .resize(200, 200)
-    .jpeg({ quality: 90 })
-    .toFile(path.resolve(req.file.destination, "resized", image))
-    .catch((error) => {
-      console.log(error);
-    });
-  req.body.image = [];
-  req.body.image.push(req.file);
-  const review = new Review(req.body);
-  review
-    .save()
-    .then((result) => {
-      res.redirect("/");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+// app.get("/reviews/:id", (req, res) => {
+//   const id = req.params.id;
+//   Review.findById(id)
+//     .then((result) => {
+//       res.render("reviewdetails", {
+//         review: result,
+//         title: `Airplane Food || ${result.title}`,
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
 
-app.delete("/delete/:id", (req, res) => {
-  const id = req.params.id;
-  Review.findByIdAndDelete(id)
-    .then((result) => {
-      res.json({ redirect: "/" });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+// app.post("/", multerSettings.upload.single("image"), async (req, res, next) => {
+//   const { filename: image } = req.file;
+//   await sharp(req.file.path)
+//     .resize(200, 200)
+//     .jpeg({ quality: 90 })
+//     .toFile(path.resolve(req.file.destination, "resized", image))
+//     .catch((error) => {
+//       console.log(error);
+//     });
+//   req.body.image = [];
+//   req.body.image.push(req.file);
+//   const review = new Review(req.body);
+//   review
+//     .save()
+//     .then((result) => {
+//       res.redirect("/");
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
 
-app.put("/:id", (req, res) => {
-  console.log(req.params.id);
-  res.redirect("/");
-});
+// app.delete("/delete/:id", (req, res) => {
+//   const id = req.params.id;
+//   Review.findByIdAndDelete(id)
+//     .then((result) => {
+//       res.json({ redirect: "/" });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
 
-app.get("/edit/:id", (req, res) => {
-  const id = req.params.id;
-  Review.findById(id).then((result) => {
-    res.render("editentry", { title: "Edit Entry", review: result });
-  });
-});
+// app.get("/edit/:id", (req, res) => {
+//   const id = req.params.id;
+//   Review.findById(id).then((result) => {
+//     res.render("editentry", { title: "Edit Entry", review: result });
+//   });
+// });
 
-app.put("/edit/:id", async (req, res) => {
-  Review.findOneAndUpdate({ _id: req.params.id }, { $set: req.body })
-    .then((result) => {
-      res.redirect("/");
-    })
+// app.put("/edit/:id", async (req, res) => {
+//   Review.findOneAndUpdate({ _id: req.params.id }, { $set: req.body })
+//     .then((result) => {
+//       res.redirect("/");
+//     })
 
-    .catch((err) => {
-      console.log(err);
-    });
-});
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
 
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });

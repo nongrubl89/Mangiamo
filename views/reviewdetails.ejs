@@ -15,7 +15,7 @@
       <div></div>
       <% } %>
       <button data-num="<%=review._id%>">
-        <a href="/edit/<%=review._id%>">Edit</a>
+        <a href="/reviews/edit/<%=review._id%>">Edit</a>
       </button>
       <button data-num="<%=review._id%>" class="delete-review">
         Delete Entry
@@ -26,7 +26,7 @@
     const deleteButton = document.querySelector(".delete-review");
 
     deleteButton.addEventListener("click", (e) => {
-      const endpoint = `/delete/${e.target.dataset.num}`;
+      const endpoint = `/reviews/delete/${e.target.dataset.num}`;
       fetch(endpoint, {
         method: "DELETE",
       })
