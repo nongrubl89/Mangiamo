@@ -1,4 +1,6 @@
 const Review = require("../models/review");
+const sharp = require("sharp");
+const path = require("path");
 
 const newReview = async (req, res) => {
   const { filename: image } = req.file;

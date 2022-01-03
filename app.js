@@ -4,9 +4,9 @@ const Review = require("./models/review");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const path = require("path");
-const sharp = require("sharp");
-const multerSettings = require("./multer");
+// const path = require("path");
+// const sharp = require("sharp");
+// const multerSettings = require("./multer");
 const methodOverride = require("method-override");
 const reviewRoutes = require("./routes/reviewRoutes");
 
@@ -57,71 +57,6 @@ app.get("/about", (req, res) => {
 });
 
 app.use("/reviews", reviewRoutes);
-
-// app.get("/reviews/:id", (req, res) => {
-//   const id = req.params.id;
-//   Review.findById(id)
-//     .then((result) => {
-//       res.render("reviewdetails", {
-//         review: result,
-//         title: `Airplane Food || ${result.title}`,
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
-// app.post("/", multerSettings.upload.single("image"), async (req, res, next) => {
-//   const { filename: image } = req.file;
-//   await sharp(req.file.path)
-//     .resize(200, 200)
-//     .jpeg({ quality: 90 })
-//     .toFile(path.resolve(req.file.destination, "resized", image))
-//     .catch((error) => {
-//       console.log(error);
-//     });
-//   req.body.image = [];
-//   req.body.image.push(req.file);
-//   const review = new Review(req.body);
-//   review
-//     .save()
-//     .then((result) => {
-//       res.redirect("/");
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
-// app.delete("/delete/:id", (req, res) => {
-//   const id = req.params.id;
-//   Review.findByIdAndDelete(id)
-//     .then((result) => {
-//       res.json({ redirect: "/" });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
-// app.get("/edit/:id", (req, res) => {
-//   const id = req.params.id;
-//   Review.findById(id).then((result) => {
-//     res.render("editentry", { title: "Edit Entry", review: result });
-//   });
-// });
-
-// app.put("/edit/:id", async (req, res) => {
-//   Review.findOneAndUpdate({ _id: req.params.id }, { $set: req.body })
-//     .then((result) => {
-//       res.redirect("/");
-//     })
-
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
 
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });
