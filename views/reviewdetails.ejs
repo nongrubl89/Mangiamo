@@ -7,7 +7,6 @@
       <h3><%=review.title %></h3>
       <a href="<%=review.url%>" target="_blank">Link to original recipe</a>
       <img class="review-img" src="/images/<%=review.image[0].filename%>" />
-      <button class="display-overlay">Edit Image</button>
       <p><%=review.body %></p>
       <% if(review.prepared === "modified"){ %>
       <h3>Modifications:</h3>
@@ -15,53 +14,16 @@
       <% } else{ %>
       <div></div>
       <% } %>
-      <button data-num="<%=review._id%>" class="edit-review">
+      <button data-num="<%=review._id%>">
         <a href="/edit/<%=review._id%>">Edit</a>
       </button>
       <button data-num="<%=review._id%>" class="delete-review">
         Delete Entry
       </button>
     </div>
-    <div class="overlay">
-      <div id="text">
-        <form
-          action="/<%=review._id%>"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          <!-- <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/png, image/jpeg"
-          /> -->
-          <input
-            type="text"
-            id="author"
-            name="author"
-            value="<%=review.author%>"
-            required
-          />
-          <!-- <input type="hidden" value="PUT" name="_method" /> -->
-          <button type="submit">Submit</button>
-        </form>
-        <button class="close-overlay">Close</button>
-      </div>
-    </div>
   </body>
   <script>
-    const displayOverlay = document.querySelector(".display-overlay");
     const deleteButton = document.querySelector(".delete-review");
-    const overlayDiv = document.querySelector(".overlay");
-    const closeOverlay = document.querySelector(".close-overlay");
-
-    displayOverlay.addEventListener("click", () => {
-      overlayDiv.style.display = "block";
-    });
-
-    closeOverlay.addEventListener("click", () => {
-      overlayDiv.style.display = "none";
-    });
 
     deleteButton.addEventListener("click", (e) => {
       const endpoint = `/delete/${e.target.dataset.num}`;

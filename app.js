@@ -1,6 +1,6 @@
+require("dotenv").config();
 const express = require("express");
 const Review = require("./models/review");
-const User = require("./models/user");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -17,8 +17,7 @@ app.use(
 
 app.use(bodyParser.json());
 
-const db =
-  "mongodb+srv://lisab:fedex1@cluster0.p9qni.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const db = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.p9qni.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => app.listen(3000))
@@ -47,7 +46,6 @@ app.get("/", (req, res) => {
       title: "Mangiamo || Home",
     });
   });
-  //   res.render("index", { reviews: result, title: "Mangiamo || Home" });
 });
 
 app.get("/login", (req, res) => {
