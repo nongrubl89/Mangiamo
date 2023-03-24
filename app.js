@@ -4,9 +4,6 @@ const Review = require("./models/review");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-// const path = require("path");
-// const sharp = require("sharp");
-// const multerSettings = require("./multer");
 const methodOverride = require("method-override");
 const reviewRoutes = require("./routes/reviewRoutes");
 
@@ -21,7 +18,7 @@ app.use(bodyParser.json());
 const db = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.p9qni.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(3000))
+  .then(() => app.listen(process.env.PORT || 3000))
   .catch((err) => console.log(err));
 
 app.set("view engine", "ejs");
