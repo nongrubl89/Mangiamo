@@ -1,11 +1,12 @@
 require("dotenv").config();
 const express = require("express");
-const Review = require("./models/review");
+// const Review = require("../models/review");
+const Review = require("../models/review")
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
-const reviewRoutes = require("./routes/reviewRoutes");
+const reviewRoutes = require("../routes/reviewRoutes");
 
 app.use(
   bodyParser.urlencoded({
